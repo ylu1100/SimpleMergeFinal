@@ -1,39 +1,40 @@
-package com.company;
-
+/**
+ * Created by Teacher on 1/28/2019.
+ * simpleMerge takes in two sorted arrays of
+ * integers and merges them to return one sorted
+ * array of integers.
+ */
 public class SimpleMerge {
-    public static int[] simpleMerge(int [] arr1, int[] arr2)
-    {
-        int arr3 [] = new int[arr1.length+arr2.length];
+    public static int[] simpleMerge(int[] arr1, int[] arr2) {
+        int[] combarray = new int[arr1.length + arr2.length];
         int ind = 0;
-        int i = 0;
-        int a = 0;
-        while ((i<arr1.length-1) && (a<arr2.length-1))
-        {
-            if (arr1[i] < arr2[a])
-            {
-                arr3[ind] = arr1[i];
-                ind++;
-                i++;
+        int ind1=0;
+        int ind2=0;
+        while (ind < combarray.length){
+            if (ind1==arr1.length && ind2<arr2.length){
+                combarray[ind]=arr2[ind2];
+                ind2++;
             }
-            else
-            {
-                arr3[ind] = arr2[a];
-                ind++;
-                a++;
+            if (ind2==arr2.length && ind1<arr1.length){
+                combarray[ind]=arr1[ind1];
+                ind1++;
             }
-        }
-        while(i<arr1.length){
-            arr3[ind] = arr1[i];
-            i++;
+            if((ind1<arr1.length && ind2<arr2.length)&&arr1[ind1]<arr2[ind2]){
+                combarray[ind]=arr1[ind1];
+                if(ind1!=arr1.length-1) {
+                    ind1++;
+                }
+
+            }
+            if((ind1<arr1.length && ind2<arr2.length)&&arr2[ind2]<arr1[ind1]){
+                combarray[ind]=arr2[ind2];
+                if(ind2!=arr2.length-1) {
+                    ind2++;
+                }
+
+            }
             ind++;
         }
-        while(a<arr2.length){
-            arr3[ind] = arr2[a];
-            a++;
-            ind++;
-        }
-        return arr3;
+        return combarray;
     }
 }
-
-
